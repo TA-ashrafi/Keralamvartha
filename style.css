@@ -1,0 +1,42 @@
+/*
+Theme Name: Tahseen Ashrafi News
+Theme URI: https://example.com/tahseen-ashrafi-news
+Author: Tahseen Ashrafi
+Author URI: https://example.com
+Description: A professional, SEO-optimized, highly customizable news and magazine WordPress theme featuring custom post widgets, order controls, social media widget, author bio box, dynamic color options, and responsive multi-layout support.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tahseen-ashrafi
+Tags: news, blog, magazine, SEO-optimized, responsive, grid-layout, custom-widgets, custom-colors
+
+--------------------------------------------------------------
+TABLE OF CONTENTS:
+1. CSS Variables & Root Theme Colors
+2. Global Resets & Base Typography
+3. Header & Navigation Styles
+4. Layout & Grid Containers
+5. Widget Styles & Card Variations
+6. Single Post & Author Box Styles
+7. Custom Comments Form ("Leave a Reply")
+8. Pagination & Navigation
+9. Footer Styles
+10. Media Queries / Responsiveness
+--------------------------------------------------------------
+*/
+
+:root {
+  --primary-color: #e50914;
+  --secondary-color: #111111;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #2b2b2b;
+  --meta-color: #6c757d;
+  --border-color: #e9ecef;
+  --link-color: #0d6efd;
+  --link-hover-color: #0a58ca;
+  --accent-color: #ffcc00;
+  --container-max-width: 1240px;
+  --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
