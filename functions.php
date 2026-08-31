@@ -118,6 +118,8 @@ require get_template_directory() . '/inc/widgets/widget-big-image-left.php';
 require get_template_directory() . '/inc/widgets/widget-category-grid.php';
 require get_template_directory() . '/inc/widgets/widget-grid-list.php';
 require get_template_directory() . '/inc/widgets/widget-horizontal-list.php';
+require get_template_directory() . '/inc/widgets/widget-sidebar-vertical-posts.php';
+require get_template_directory() . '/inc/widgets/widget-sidebar-popular-posts.php';
 
 // Register Custom Widgets
 function tahseen_ashrafi_register_custom_widgets() {
@@ -128,5 +130,7 @@ function tahseen_ashrafi_register_custom_widgets() {
     register_widget('Tahseen_Ashrafi_Category_Grid_Widget');
     register_widget('Tahseen_Ashrafi_Grid_List_Widget');
     register_widget('Tahseen_Ashrafi_Horizontal_List_Widget');
+    register_widget('Tahseen_Ashrafi_Sidebar_Vertical_Posts_Widget');
+    register_widget('Tahseen_Ashrafi_Sidebar_Popular_Posts_Widget');
 }
 add_action('widgets_init', 'tahseen_ashrafi_register_custom_widgets');

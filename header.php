@@ -10,11 +10,11 @@
 <?php wp_body_open(); ?>
 
 <div id="page" class="site-container">
-    <!-- TOP BAR -->
+    <!-- TOP BAR - ALL BLACK, SLIMMER, DATE TIME LEFT, SOCIAL RIGHT -->
     <div class="top-bar">
         <div class="container top-bar-inner">
-            <div class="top-bar-date">
-                <i class="fa-regular fa-calendar-days"></i> <span><?php echo date_i18n('l, F j, Y'); ?></span>
+            <div class="top-date-time">
+                <i class="fa-regular fa-calendar-days"></i> <?php echo date('l, F j, Y'); ?>
             </div>
             <div class="top-social-icons">
                 <?php
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <!-- MAIN HEADER -->
+    <!-- MAIN HEADER - NON STICKY -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="site-branding">
@@ -66,39 +66,25 @@
         </div>
     </header>
 
-    <!-- TRENDING BAR -->
-    <?php
-    $trending_cat   = get_theme_mod('tahseen_ashrafi_trending_category', 0);
-    $marquee_speed = get_theme_mod('tahseen_ashrafi_trending_speed', 15);
-
-    $trending_args = array(
-        'posts_per_page' => 10,
-        'post_status'    => 'publish',
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    );
-    if ($trending_cat > 0) {
-        $trending_args['cat'] = $trending_cat;
-    }
-
-    $trending_posts = get_posts($trending_args);
-    ?>
+    <!-- TRENDING NEWS MARQUEE TICKER -->
     <div class="trending-bar">
         <div class="container trending-inner">
             <span class="trending-badge">TRENDING:</span>
-            <div class="trending-marquee-wrapper">
-                <div class="trending-marquee-content" style="animation-duration: <?php echo esc_attr($marquee_speed); ?>s;">
+            <div class="marquee-ticker-wrapper">
+                <div class="marquee-ticker-content">
                     <?php
-                    if (!empty($trending_posts)) {
-                        $items = array();
-                        foreach ($trending_posts as $t_post) {
-                            $items[] = '<a href="' . esc_url(get_permalink($t_post->ID)) . '" class="trending-link">' . esc_html(get_the_title($t_post->ID)) . '</a>';
+                    $latest_posts = get_posts(array(
+                        'posts_per_page' => 10,
+                        'post_status'    => 'publish',
+                    ));
+                    if (!empty($latest_posts)) {
+                        $marquee_items = array();
+                        foreach ($latest_posts as $l_post) {
+                            $marquee_items[] = '<a href="' . esc_url(get_permalink($l_post->ID)) . '">' . esc_html(get_the_title($l_post->ID)) . '</a>';
                         }
-                        $joined = implode(' <span class="trending-separator">|</span> ', $items);
-                        // Echo twice for seamless marquee loop
-                        echo $joined . ' <span class="trending-separator">|</span> ' . $joined;
+                        echo implode(' &nbsp;<span class="marquee-pipe">|</span>&nbsp; ', $marquee_items);
                     } else {
-                        echo '<span>Welcome to ' . esc_html(get_bloginfo('name')) . ' - Latest news and updates.</span>';
+                        echo '<span>Welcome to ' . esc_html(get_bloginfo('name')) . ' - Latest headlines & news updates.</span>';
                     }
                     ?>
                 </div>

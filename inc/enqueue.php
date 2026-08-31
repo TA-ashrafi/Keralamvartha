@@ -22,14 +22,15 @@ function tahseen_ashrafi_enqueue_assets() {
     // Dynamic Customizer CSS
     $primary_color   = get_theme_mod('tahseen_ashrafi_primary_color', '#e50914');
     $secondary_color = get_theme_mod('tahseen_ashrafi_secondary_color', '#111111');
-    $accent_color    = get_theme_mod('tahseen_ashrafi_accent_color', '#ffcc00');
-    $logo_height     = get_theme_mod('tahseen_ashrafi_logo_height', 50);
+    $logo_width      = get_theme_mod('tahseen_ashrafi_logo_width', '180');
+    $marquee_speed   = get_theme_mod('tahseen_ashrafi_marquee_speed', '25');
 
     $custom_css = "
         :root {
             --primary-color: {$primary_color};
             --secondary-color: {$secondary_color};
-            --accent-color: {$accent_color};
+            --logo-width: {$logo_width}px;
+            --marquee-speed: {$marquee_speed}s;
         }
         .site-branding img, .custom-logo {
             max-height: {$logo_height}px !important;
