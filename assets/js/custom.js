@@ -17,22 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Sticky Header Handling removed per user request so header scrolls normally with page
 
-    // Back to Top Button Functionality
-    const backToTopBtn = document.querySelector('.back-to-top-btn');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('is-visible');
-            } else {
-                backToTopBtn.classList.remove('is-visible');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', function() {
+    // Back to Top Button Functionality (both footer bottom button & fixed button if present)
+    const backToTopBtns = document.querySelectorAll('.back-to-top-btn, .back-to-top-footer-btn');
+    backToTopBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-    }
+    });
 });

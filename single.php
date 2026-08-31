@@ -9,14 +9,19 @@ get_header();
 
 if (have_posts()) :
     while (have_posts()) : the_post();
+        // Increment post views counter
         tahseen_ashrafi_set_post_views(get_the_ID());
 
-        $global_single_sidebar = get_theme_mod('tahseen_ashrafi_enable_single_sidebar', true);
-        $metabox_sidebar = get_post_meta(get_the_ID(), '_tahseen_ashrafi_enable_sidebar', true);
-
-        // Single post sidebar enabled only if both global setting and post metabox allow it
-        $has_sidebar = $global_single_sidebar && ($metabox_sidebar !== 'disable');
-        $grid_class  = $has_sidebar ? 'site-main-grid' : 'site-main-grid no-sidebar';
+        $global_single_sidebar = get_theme_mod('tahseen_ashrafi_enable_single_sidebar', false);
+        $meta_sidebar = get_post_meta(get_the_ID(), '_tahseen_ashrafi_enable_sidebar', true);
+        if ($meta_sidebar === 'enable') {
+            $has_sidebar = true;
+        } elseif ($meta_sidebar === 'disable') {
+            $has_sidebar = false;
+        } else {
+            $has_sidebar = $global_single_sidebar;
+        }
+        $grid_class = $has_sidebar ? 'site-main-grid' : 'site-main-grid no-sidebar';
         $cat = get_the_category();
         $cat_name = !empty($cat) ? $cat[0]->name : '';
         ?>
