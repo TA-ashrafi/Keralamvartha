@@ -26,4 +26,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.querySelector('.back-to-top-btn');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('is-visible');
+            } else {
+                backToTopBtn.classList.remove('is-visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });

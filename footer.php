@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$copyright_name = get_theme_mod('tahseen_ashrafi_footer_copyright_name', 'Tahseen Ashrafi');
+$site_name = get_bloginfo('name');
 ?>
 
     <footer class="site-footer">
@@ -24,12 +24,17 @@ $copyright_name = get_theme_mod('tahseen_ashrafi_footer_copyright_name', 'Tahsee
         <div class="site-footer-bottom">
             <div class="container">
                 <p class="copyright-text">
-                    &copy; <?php echo date('Y'); ?> <?php echo esc_html($copyright_name); ?> made with love <span class="heart-icon"><i class="fa-solid fa-heart"></i></span>
+                    &copy; <?php echo date('Y'); ?> <?php echo esc_html($site_name); ?> &mdash; All Rights Reserved. &nbsp;|&nbsp; Made with <span class="heart-icon"><i class="fa-solid fa-heart"></i></span> by Tahseen Ashrafi
                 </p>
             </div>
         </div>
     </footer>
 </div><!-- #page -->
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top-btn" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
 
 <?php wp_footer(); ?>
 </body>
