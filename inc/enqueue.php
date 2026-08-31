@@ -32,6 +32,11 @@ function tahseen_ashrafi_enqueue_assets() {
             --logo-width: {$logo_width}px;
             --marquee-speed: {$marquee_speed}s;
         }
+        .site-branding img, .custom-logo {
+            max-height: {$logo_height}px !important;
+            width: auto;
+            height: auto;
+        }
     ";
     wp_add_inline_style('tahseen-ashrafi-custom', $custom_css);
 

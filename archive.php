@@ -11,6 +11,10 @@ $enable_archive_sidebar = get_theme_mod('tahseen_ashrafi_enable_archive_sidebar'
 $grid_class = $enable_archive_sidebar ? 'site-main-grid' : 'site-main-grid no-sidebar';
 ?>
 
+<?php
+$show_sidebar = get_theme_mod('tahseen_ashrafi_enable_archive_sidebar', false);
+$grid_class   = $show_sidebar ? 'site-main-grid' : 'site-main-grid no-sidebar';
+?>
 <main class="main-content-area container">
     <div class="<?php echo esc_attr($grid_class); ?>">
         <div class="primary-content">

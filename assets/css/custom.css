@@ -344,17 +344,19 @@ img {
 }
 
 .vertical-post-thumb {
-  width: 90px;
-  height: 70px;
+  width: 95px;
+  height: 75px;
   flex-shrink: 0;
   border-radius: 4px;
   overflow: hidden;
+  background-color: #f0f0f0;
 }
 
 .vertical-post-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .vertical-post-headline {
@@ -1009,6 +1011,7 @@ img {
     display: block;
   }
 
+  .post-grid-3-col,
   .category-grid-4col,
   .grid-top-4col,
   .horizontal-list-grid-3col,

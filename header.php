@@ -17,11 +17,18 @@
                 <i class="fa-regular fa-calendar-days"></i> <?php echo date('l, F j, Y'); ?>
             </div>
             <div class="top-social-icons">
-                <a href="#" class="social-icon-btn youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" class="social-icon-btn instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="social-icon-btn twitter" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="social-icon-btn linkedin" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="social-icon-btn facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <?php
+                $yt = get_theme_mod('tahseen_ashrafi_youtube', '#');
+                $insta = get_theme_mod('tahseen_ashrafi_instagram', '#');
+                $tw = get_theme_mod('tahseen_ashrafi_twitter', '#');
+                $li = get_theme_mod('tahseen_ashrafi_linkedin', '#');
+                $fb = get_theme_mod('tahseen_ashrafi_facebook', '#');
+                ?>
+                <?php if ($yt) : ?><a href="<?php echo esc_url($yt); ?>" class="social-icon-btn youtube" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a><?php endif; ?>
+                <?php if ($insta) : ?><a href="<?php echo esc_url($insta); ?>" class="social-icon-btn instagram" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a><?php endif; ?>
+                <?php if ($tw) : ?><a href="<?php echo esc_url($tw); ?>" class="social-icon-btn twitter" aria-label="Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a><?php endif; ?>
+                <?php if ($li) : ?><a href="<?php echo esc_url($li); ?>" class="social-icon-btn linkedin" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a><?php endif; ?>
+                <?php if ($fb) : ?><a href="<?php echo esc_url($fb); ?>" class="social-icon-btn facebook" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a><?php endif; ?>
             </div>
         </div>
     </div>
