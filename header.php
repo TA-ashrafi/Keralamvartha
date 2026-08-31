@@ -10,30 +10,28 @@
 <?php wp_body_open(); ?>
 
 <div id="page" class="site-container">
-    <!-- TOP BAR - ALL BLACK, SLIMMER, DATE TIME LEFT, SOCIAL RIGHT -->
+    <!-- TOP BAR -->
     <div class="top-bar">
         <div class="container top-bar-inner">
-            <div class="top-date-time">
-                <i class="fa-regular fa-calendar-days"></i> <?php echo date('l, F j, Y'); ?>
+            <div class="top-bar-date">
+                <i class="fa-regular fa-calendar-days"></i> <span><?php echo date_i18n('l, F j, Y'); ?></span>
             </div>
             <div class="top-social-icons">
                 <?php
                 $yt = get_theme_mod('tahseen_ashrafi_youtube', '#');
                 $insta = get_theme_mod('tahseen_ashrafi_instagram', '#');
                 $tw = get_theme_mod('tahseen_ashrafi_twitter', '#');
-                $li = get_theme_mod('tahseen_ashrafi_linkedin', '#');
                 $fb = get_theme_mod('tahseen_ashrafi_facebook', '#');
                 ?>
-                <?php if ($yt) : ?><a href="<?php echo esc_url($yt); ?>" class="social-icon-btn youtube" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a><?php endif; ?>
-                <?php if ($insta) : ?><a href="<?php echo esc_url($insta); ?>" class="social-icon-btn instagram" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a><?php endif; ?>
-                <?php if ($tw) : ?><a href="<?php echo esc_url($tw); ?>" class="social-icon-btn twitter" aria-label="Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a><?php endif; ?>
-                <?php if ($li) : ?><a href="<?php echo esc_url($li); ?>" class="social-icon-btn linkedin" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a><?php endif; ?>
                 <?php if ($fb) : ?><a href="<?php echo esc_url($fb); ?>" class="social-icon-btn facebook" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a><?php endif; ?>
+                <?php if ($insta) : ?><a href="<?php echo esc_url($insta); ?>" class="social-icon-btn instagram" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a><?php endif; ?>
+                <?php if ($yt) : ?><a href="<?php echo esc_url($yt); ?>" class="social-icon-btn youtube" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a><?php endif; ?>
+                <?php if ($tw) : ?><a href="<?php echo esc_url($tw); ?>" class="social-icon-btn twitter" aria-label="Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a><?php endif; ?>
             </div>
         </div>
     </div>
 
-    <!-- MAIN HEADER - NON STICKY -->
+    <!-- MAIN HEADER -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="site-branding">
@@ -66,25 +64,39 @@
         </div>
     </header>
 
-    <!-- TRENDING NEWS MARQUEE TICKER -->
+    <!-- TRENDING BAR -->
+    <?php
+    $trending_cat   = get_theme_mod('tahseen_ashrafi_trending_category', 0);
+    $marquee_speed = get_theme_mod('tahseen_ashrafi_trending_speed', 15);
+
+    $trending_args = array(
+        'posts_per_page' => 10,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+    if ($trending_cat > 0) {
+        $trending_args['cat'] = $trending_cat;
+    }
+
+    $trending_posts = get_posts($trending_args);
+    ?>
     <div class="trending-bar">
         <div class="container trending-inner">
             <span class="trending-badge">TRENDING:</span>
-            <div class="marquee-ticker-wrapper">
-                <div class="marquee-ticker-content">
+            <div class="trending-marquee-wrapper">
+                <div class="trending-marquee-content" style="animation-duration: <?php echo esc_attr($marquee_speed); ?>s;">
                     <?php
-                    $latest_posts = get_posts(array(
-                        'posts_per_page' => 10,
-                        'post_status'    => 'publish',
-                    ));
-                    if (!empty($latest_posts)) {
-                        $marquee_items = array();
-                        foreach ($latest_posts as $l_post) {
-                            $marquee_items[] = '<a href="' . esc_url(get_permalink($l_post->ID)) . '">' . esc_html(get_the_title($l_post->ID)) . '</a>';
+                    if (!empty($trending_posts)) {
+                        $items = array();
+                        foreach ($trending_posts as $t_post) {
+                            $items[] = '<a href="' . esc_url(get_permalink($t_post->ID)) . '" class="trending-link">' . esc_html(get_the_title($t_post->ID)) . '</a>';
                         }
-                        echo implode(' &nbsp;<span class="marquee-pipe">|</span>&nbsp; ', $marquee_items);
+                        $joined = implode(' <span class="trending-separator">|</span> ', $items);
+                        // Echo twice for seamless marquee loop
+                        echo $joined . ' <span class="trending-separator">|</span> ' . $joined;
                     } else {
-                        echo '<span>Welcome to ' . esc_html(get_bloginfo('name')) . ' - Latest headlines & news updates.</span>';
+                        echo '<span>Welcome to ' . esc_html(get_bloginfo('name')) . ' - Latest news and updates.</span>';
                     }
                     ?>
                 </div>

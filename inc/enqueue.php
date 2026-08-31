@@ -20,20 +20,25 @@ function tahseen_ashrafi_enqueue_assets() {
     wp_enqueue_style('tahseen-ashrafi-custom', get_template_directory_uri() . '/assets/css/custom.css', array('tahseen-ashrafi-style'), '1.0.0');
 
     // Dynamic Customizer CSS
-    $primary_color   = get_theme_mod('tahseen_ashrafi_primary_color', '#e50914');
-    $secondary_color = get_theme_mod('tahseen_ashrafi_secondary_color', '#111111');
-    $logo_width      = get_theme_mod('tahseen_ashrafi_logo_width', '180');
-    $marquee_speed   = get_theme_mod('tahseen_ashrafi_marquee_speed', '25');
+    $primary_color     = get_theme_mod('tahseen_ashrafi_primary_color', '#e50914');
+    $secondary_color   = get_theme_mod('tahseen_ashrafi_secondary_color', '#111111');
+    $accent_color      = get_theme_mod('tahseen_ashrafi_accent_color', '#ffcc00');
+    $logo_height       = get_theme_mod('tahseen_ashrafi_logo_height', 50);
+    $footer_logo_size  = get_theme_mod('tahseen_ashrafi_footer_logo_size', 60);
 
     $custom_css = "
         :root {
             --primary-color: {$primary_color};
             --secondary-color: {$secondary_color};
-            --logo-width: {$logo_width}px;
-            --marquee-speed: {$marquee_speed}s;
+            --accent-color: {$accent_color};
         }
         .site-branding img, .custom-logo {
             max-height: {$logo_height}px !important;
+            width: auto;
+            height: auto;
+        }
+        .footer-logo-img {
+            max-height: {$footer_logo_size}px !important;
             width: auto;
             height: auto;
         }

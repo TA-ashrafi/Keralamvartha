@@ -16,6 +16,7 @@ function tahseen_ashrafi_customize_register($wp_customize) {
         'priority' => 30,
     ));
 
+    // Primary Color Setting
     $wp_customize->add_setting('tahseen_ashrafi_primary_color', array(
         'default'           => '#e50914',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -26,6 +27,7 @@ function tahseen_ashrafi_customize_register($wp_customize) {
         'settings' => 'tahseen_ashrafi_primary_color',
     )));
 
+    // Secondary / Header Color Setting
     $wp_customize->add_setting('tahseen_ashrafi_secondary_color', array(
         'default'           => '#111111',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -36,59 +38,16 @@ function tahseen_ashrafi_customize_register($wp_customize) {
         'settings' => 'tahseen_ashrafi_secondary_color',
     )));
 
-    // Header & Logo Settings Section
-    $wp_customize->add_section('tahseen_ashrafi_header_section', array(
-        'title'    => __('Header & Logo Settings', 'tahseen-ashrafi'),
-        'priority' => 35,
+    // Accent Color Setting
+    $wp_customize->add_setting('tahseen_ashrafi_accent_color', array(
+        'default'           => '#ffcc00',
+        'sanitize_callback' => 'sanitize_hex_color',
     ));
-
-    $wp_customize->add_setting('tahseen_ashrafi_logo_width', array(
-        'default'           => '180',
-        'sanitize_callback' => 'absint',
-    ));
-    $wp_customize->add_control('tahseen_ashrafi_logo_width', array(
-        'label'       => __('Header Logo Width (px)', 'tahseen-ashrafi'),
-        'section'     => 'tahseen_ashrafi_header_section',
-        'type'        => 'number',
-        'input_attrs' => array('min' => 50, 'max' => 500, 'step' => 5),
-    ));
-
-    $wp_customize->add_setting('tahseen_ashrafi_marquee_speed', array(
-        'default'           => '25',
-        'sanitize_callback' => 'absint',
-    ));
-    $wp_customize->add_control('tahseen_ashrafi_marquee_speed', array(
-        'label'       => __('Trending Ticker Speed (Seconds)', 'tahseen-ashrafi'),
-        'section'     => 'tahseen_ashrafi_header_section',
-        'type'        => 'number',
-        'input_attrs' => array('min' => 5, 'max' => 60, 'step' => 1),
-    ));
-
-    // Sidebar Display Options
-    $wp_customize->add_section('tahseen_ashrafi_sidebar_options', array(
-        'title'    => __('Sidebar Settings', 'tahseen-ashrafi'),
-        'priority' => 38,
-    ));
-
-    $wp_customize->add_setting('tahseen_ashrafi_enable_archive_sidebar', array(
-        'default'           => true,
-        'sanitize_callback' => 'rest_sanitize_boolean',
-    ));
-    $wp_customize->add_control('tahseen_ashrafi_enable_archive_sidebar', array(
-        'label'    => __('Enable Sidebar on Category / Archive / Menu Pages', 'tahseen-ashrafi'),
-        'section'  => 'tahseen_ashrafi_sidebar_options',
-        'type'     => 'checkbox',
-    ));
-
-    $wp_customize->add_setting('tahseen_ashrafi_enable_single_sidebar', array(
-        'default'           => true,
-        'sanitize_callback' => 'rest_sanitize_boolean',
-    ));
-    $wp_customize->add_control('tahseen_ashrafi_enable_single_sidebar', array(
-        'label'    => __('Enable Sidebar Globally on Single Posts', 'tahseen-ashrafi'),
-        'section'  => 'tahseen_ashrafi_sidebar_options',
-        'type'     => 'checkbox',
-    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'tahseen_ashrafi_accent_color', array(
+        'label'    => __('Secondary Accent / Badge Color', 'tahseen-ashrafi'),
+        'section'  => 'tahseen_ashrafi_colors_section',
+        'settings' => 'tahseen_ashrafi_accent_color',
+    )));
 
     // Trending Bar Section
     $wp_customize->add_section('tahseen_ashrafi_trending_section', array(
@@ -157,7 +116,6 @@ function tahseen_ashrafi_customize_register($wp_customize) {
         'youtube'   => 'YouTube URL',
         'instagram' => 'Instagram URL',
         'twitter'   => 'Twitter / X URL',
-        'linkedin'  => 'LinkedIn URL',
         'facebook'  => 'Facebook URL',
     );
 
@@ -205,25 +163,51 @@ function tahseen_ashrafi_customize_register($wp_customize) {
 
     // Footer Options Section
     $wp_customize->add_section('tahseen_ashrafi_footer_section', array(
-        'title'    => __('Footer Settings', 'tahseen-ashrafi'),
+        'title'    => __('Footer Options', 'tahseen-ashrafi'),
         'priority' => 40,
     ));
 
+    // Footer Logo Image
     $wp_customize->add_setting('tahseen_ashrafi_footer_logo', array(
         'default'           => '',
         'sanitize_callback' => 'esc_url_raw',
     ));
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'tahseen_ashrafi_footer_logo', array(
-        'label'    => __('Footer Logo Image', 'tahseen-ashrafi'),
+        'label'    => __('Footer Custom Logo', 'tahseen-ashrafi'),
         'section'  => 'tahseen_ashrafi_footer_section',
     )));
 
+    // Footer Logo Size Max Height
+    $wp_customize->add_setting('tahseen_ashrafi_footer_logo_size', array(
+        'default'           => 60,
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control('tahseen_ashrafi_footer_logo_size', array(
+        'label'       => __('Footer Logo Max Height (px)', 'tahseen-ashrafi'),
+        'description' => __('Adjust footer logo size.', 'tahseen-ashrafi'),
+        'section'     => 'tahseen_ashrafi_footer_section',
+        'type'        => 'number',
+        'input_attrs' => array('min' => 20, 'max' => 200, 'step' => 1),
+    ));
+
+    // Footer About Title
+    $wp_customize->add_setting('tahseen_ashrafi_footer_about_title', array(
+        'default'           => 'About Us Content',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('tahseen_ashrafi_footer_about_title', array(
+        'label'    => __('About Us Heading', 'tahseen-ashrafi'),
+        'section'  => 'tahseen_ashrafi_footer_section',
+        'type'     => 'text',
+    ));
+
+    // Footer About Text
     $wp_customize->add_setting('tahseen_ashrafi_footer_about_text', array(
-        'default'           => 'Welcome to Tahseen Ashrafi News. Delivering latest headlines, trending stories, and in-depth news coverage daily.',
+        'default'           => 'Welcome to our news portal for the latest updates, breaking news, and viral content across all categories.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ));
     $wp_customize->add_control('tahseen_ashrafi_footer_about_text', array(
-        'label'    => __('Footer About Content', 'tahseen-ashrafi'),
+        'label'    => __('Footer About Description', 'tahseen-ashrafi'),
         'section'  => 'tahseen_ashrafi_footer_section',
         'type'     => 'textarea',
     ));
