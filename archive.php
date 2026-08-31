@@ -6,10 +6,13 @@
  */
 
 get_header();
+
+$enable_archive_sidebar = get_theme_mod('tahseen_ashrafi_enable_archive_sidebar', true);
+$grid_class = $enable_archive_sidebar ? 'site-main-grid' : 'site-main-grid no-sidebar';
 ?>
 
 <main class="main-content-area container">
-    <div class="site-main-grid">
+    <div class="<?php echo esc_attr($grid_class); ?>">
         <div class="primary-content">
             <header class="widget-section-header">
                 <h1 class="widget-section-title">
@@ -46,7 +49,9 @@ get_header();
             <?php endif; ?>
         </div>
 
-        <?php get_sidebar(); ?>
+        <?php if ($enable_archive_sidebar) : ?>
+            <?php get_sidebar(); ?>
+        <?php endif; ?>
     </div>
 </main>
 
