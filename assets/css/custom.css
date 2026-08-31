@@ -58,10 +58,10 @@ img {
 
 /* TOP BAR */
 .top-bar {
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 13px;
-  padding: 8px 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 0;
 }
 
 .top-bar-inner {
@@ -72,11 +72,12 @@ img {
   gap: 10px;
 }
 
-.top-nav {
+.top-bar-date {
   display: flex;
-  gap: 15px;
-  list-style: none;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: #d1d5db;
+  font-weight: 500;
 }
 
 .top-social-icons {
@@ -105,8 +106,7 @@ img {
 .site-header {
   background-color: var(--secondary-color);
   color: #ffffff;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -176,6 +176,7 @@ img {
   border-bottom: 1px solid var(--border-color);
   padding: 8px 0;
   font-size: 13px;
+  overflow: hidden;
 }
 
 .trending-inner {
@@ -188,18 +189,49 @@ img {
   background-color: var(--primary-color);
   color: #ffffff;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 3px;
   text-transform: uppercase;
   font-size: 11px;
   white-space: nowrap;
+  z-index: 2;
 }
 
-.trending-items {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
+.trending-marquee-wrapper {
+  overflow: hidden;
   white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.trending-marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-scroll 15s linear infinite;
+}
+
+.trending-marquee-content:hover {
+  animation-play-state: paused;
+}
+
+.trending-link {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.trending-separator {
+  margin: 0 12px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* MAIN CONTENT & LAYOUT */
@@ -326,17 +358,19 @@ img {
 }
 
 .vertical-post-thumb {
-  width: 90px;
-  height: 70px;
+  width: 95px;
+  height: 75px;
   flex-shrink: 0;
   border-radius: 4px;
   overflow: hidden;
+  background-color: #f0f0f0;
 }
 
 .vertical-post-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .vertical-post-headline {
@@ -927,20 +961,71 @@ img {
   margin-top: 50px;
 }
 
-.footer-widgets-grid {
+.footer-columns-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 40px;
   margin-bottom: 40px;
 }
 
-.footer-widget-title {
+.footer-col-title {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 15px;
   color: #ffffff;
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.footer-logo-wrapper {
+  margin-bottom: 15px;
+}
+
+.footer-logo-img {
+  max-height: 55px;
+  width: auto;
+}
+
+.footer-site-title {
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.footer-site-title a {
+  color: #ffffff;
+}
+
+.footer-about-text {
+  font-size: 13px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.footer-quick-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+
+.footer-quick-links li a {
+  color: #dddddd;
+  font-size: 14px;
+}
+
+.footer-social-desc {
+  font-size: 13px;
+  color: #cccccc;
+  margin-bottom: 15px;
+}
+
+.footer-social-icons-horizontal {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .site-footer-bottom {
@@ -1006,16 +1091,37 @@ img {
     display: block;
   }
 
+  .post-grid-3-col,
   .category-grid-4col,
   .grid-top-4col,
   .horizontal-list-grid-3col,
   .list-bottom-3col,
   .small-news-grid-2col,
-  .sub-post-grid-2col {
+  .sub-post-grid-2col,
+  .footer-columns-3 {
     grid-template-columns: 1fr;
   }
 
-  .footer-widgets-grid {
-    grid-template-columns: 1fr;
+  .vertical-post-item,
+  .horiz-list-card,
+  .bottom-list-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vertical-post-thumb,
+  .horiz-list-thumb,
+  .bottom-list-thumb {
+    width: 100%;
+    height: 200px;
+  }
+
+  .grid-card-thumb,
+  .cat-grid-thumb,
+  .top-grid-thumb,
+  .featured-main-thumb,
+  .big-left-thumb,
+  .feat-grid-main-thumb {
+    height: 220px;
   }
 }

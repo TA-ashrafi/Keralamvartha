@@ -15,17 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sticky Header Handling
-    const siteHeader = document.querySelector('.site-header');
-    if (siteHeader) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                siteHeader.classList.add('is-sticky');
-            } else {
-                siteHeader.classList.remove('is-sticky');
-            }
-        });
-    }
+    // Sticky Header Handling removed per user request so header scrolls normally with page
 
     // Back to Top Button Functionality
     const backToTopBtn = document.querySelector('.back-to-top-btn');

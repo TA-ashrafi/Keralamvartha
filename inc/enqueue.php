@@ -23,12 +23,18 @@ function tahseen_ashrafi_enqueue_assets() {
     $primary_color   = get_theme_mod('tahseen_ashrafi_primary_color', '#e50914');
     $secondary_color = get_theme_mod('tahseen_ashrafi_secondary_color', '#111111');
     $accent_color    = get_theme_mod('tahseen_ashrafi_accent_color', '#ffcc00');
+    $logo_height     = get_theme_mod('tahseen_ashrafi_logo_height', 50);
 
     $custom_css = "
         :root {
             --primary-color: {$primary_color};
             --secondary-color: {$secondary_color};
             --accent-color: {$accent_color};
+        }
+        .site-branding img, .custom-logo {
+            max-height: {$logo_height}px !important;
+            width: auto;
+            height: auto;
         }
     ";
     wp_add_inline_style('tahseen-ashrafi-custom', $custom_css);
